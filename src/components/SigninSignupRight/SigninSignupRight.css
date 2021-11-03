@@ -1,0 +1,16 @@
+.wrappa{
+  display:flex;
+  justify-content: center;
+}
+.sign-in{
+  padding-top:10%;
+  width:80%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+}
+.sign-in form{
+  width:100%;
+  text-align:center;
+}
