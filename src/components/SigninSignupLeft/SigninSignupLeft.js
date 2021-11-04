@@ -10,10 +10,10 @@ export default function SigninSignupLeft({header,paragraphs,btnText,btnLinksTo})
       <h2 className="welcome-header">{header}</h2>
       <div className="cizgi" style={{background:'#f8ffff',width:'35%'}}></div>
       { 
-        paragraphs && paragraphs.map((paragraphs, index)=>{
+        paragraphs && paragraphs.map((paragraph, index)=>{
           return(
             <p key={index} className="welcome-p">
-              {paragraphs}
+              {paragraph}
             </p>
             
           )
