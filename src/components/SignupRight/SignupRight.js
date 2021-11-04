@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { useSignup } from '../../hooks/useSignup';
 
 import FormInput from "../FormInput/FormInput"
 import CustomButton from '../CustomButton/CustomButton';
@@ -10,6 +11,9 @@ export default function SigninSignupRight() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [secondPassword,setSecondPassword]=useState('');
+  const [passwordError,setPasswordError] = useState(null);
+
+  const { signup, error, isPending } = useSignup();
 
   const handleChange = e => {
     const {value,name} = e.target;
@@ -31,9 +35,17 @@ export default function SigninSignupRight() {
     }
   }
   
-  const handleSubmit = (e) => {
+  const handleSubmit =(e) => {
     e.preventDefault();
-    console.log({email,username,password,secondPassword});
+
+    if(password!==secondPassword){
+      setPasswordError('Lütfen girilen şifrelerin aynı olmasına dikkat ediniz.');
+      return
+    }
+
+    setPasswordError(null);
+
+    signup(email,password,username);
     setEmail('');
     setUsername('');
     setPassword('');
@@ -77,9 +89,14 @@ export default function SigninSignupRight() {
           label="Şifre tekrarı"
           required
         />
-        <CustomButton type='submit'>
-          KAYIT OL
-        </CustomButton>
+        {passwordError && <p>{passwordError}</p>}
+        {isPending ?
+          <CustomButton disabled type='submit'>yükleniyor...</CustomButton>
+        :
+          <CustomButton type='submit'>KAYIT OL</CustomButton>
+        }
+        
+        {error && <p>{error}</p>}
       </form>
     </div>
     </div>

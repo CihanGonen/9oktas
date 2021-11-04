@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { useLogin } from '../../hooks/useLogin'
 
 import FormInput from "../FormInput/FormInput"
 import CustomButton from '../CustomButton/CustomButton';
@@ -6,8 +7,10 @@ import CustomButton from '../CustomButton/CustomButton';
 import './SigninRight.css';
 
 export default function SigninSignupRight() {
-  const [username,setUsername] = useState('');
+  const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
+
+  const { login, isPending, error } = useLogin();
 
   const handleChange = e => {
     const {value,name} = e.target;
@@ -16,7 +19,7 @@ export default function SigninSignupRight() {
         setPassword(value)
         break;
       case 'username':
-        setUsername(value)
+        setEmail(value)
         break;
       default:
         break;
@@ -25,8 +28,10 @@ export default function SigninSignupRight() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({username,password});
-    setUsername('');
+
+    login(email,password);
+
+    setEmail('');
     setPassword('');
   }
 
@@ -38,7 +43,7 @@ export default function SigninSignupRight() {
       <form onSubmit={handleSubmit}>
         <FormInput 
           name="username"
-          value={username}
+          value={email}
           handleChange={handleChange}
           label="Kullanıcı Adı"
           required
@@ -51,9 +56,12 @@ export default function SigninSignupRight() {
           label="Şifre"
           required
         />
-        <CustomButton type='submit'>
-          GİRİŞ YAP
-        </CustomButton>
+        {isPending ?
+          <CustomButton disabled type='submit'>yükleniyor...</CustomButton>
+        :
+          <CustomButton type='submit'>GİRİŞ YAP</CustomButton>
+        }
+        {error && <p>{error}</p>}
       </form>
       <a href="/signup" className="forgotPassword">
         Şifremi unuttum

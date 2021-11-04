@@ -1,7 +1,12 @@
+import Navbar from '../../components/Navbar/Navbar';
+
 export default function Home() {
   return (
     <div>
-      Homepage
+      <Navbar />
+      <div style={{textAlign:'center'}}>
+        Homepage
+      </div>
     </div>
   )
 }
