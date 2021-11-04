@@ -6,21 +6,24 @@
   padding:2% 9%;
   border-radius:50px;
   border:4px solid #00a2ff;
-  outline:none !important;
-  box-shadow:none !important;
   cursor:pointer;
-  transition: all .5s ease;
+  transition: all .2s;
 }
 .btn:hover{
-  border:4px solid #00a2ff;
-  background:transparent;
-  color:#00a2ff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 .transparent{
   background:transparent;
   border:4px solid #f8ffff;
 }
 .transparent:hover{
+  transform:none;
+  box-shadow:none;
   border:4px solid #f8ffff;
   color:#00a2ff;
   background:#f8ffff;
