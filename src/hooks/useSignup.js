@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
-import { projectAuth } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
+
+import { auth } from '../firebase/config'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false)
@@ -14,7 +16,7 @@ export const useSignup = () => {
   
     try {
       // signup
-      const res = await projectAuth.createUserWithEmailAndPassword(email, password)
+      const res = await createUserWithEmailAndPassword(auth, email, password)
 
       if (!res) {
         throw new Error('Could not complete signup')

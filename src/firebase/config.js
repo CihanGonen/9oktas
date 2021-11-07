@@ -1,5 +1,5 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyC0lkNMMapqp8N6lFGk4RlK8eeuZlEJEjQ",
@@ -11,9 +11,9 @@ const firebaseConfig = {
 };
 
 // init firabase
-firebase.initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 // init services
-const projectAuth = firebase.auth();
+const auth = getAuth()
 
-export { projectAuth };
+export { auth };
